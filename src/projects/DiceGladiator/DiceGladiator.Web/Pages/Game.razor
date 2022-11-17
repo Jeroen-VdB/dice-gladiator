@@ -32,6 +32,14 @@
 
 <button class="btn btn-primary" @onclick="NextEnemy">FIGHT</button>
 
+<h3>Leaderboard:</h3>
+@foreach (var player in GameService.Players)
+{
+	<p>
+        <strong>@player.Name:</strong> @player.Score
+	</p>
+}
+
 @code {
     private void NextEnemy()
     {

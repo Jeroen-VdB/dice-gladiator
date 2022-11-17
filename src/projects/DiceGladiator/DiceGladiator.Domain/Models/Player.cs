@@ -2,12 +2,7 @@
 {
     public class Player
     {
-        public Player(string name)
-        {
-            Name = name;
-        }
-
-        public string Name { get; }
+        public string? Name { get; set; }
         public int Score { get; private set; }
 
         public void AddScore (int score) => Score += score;

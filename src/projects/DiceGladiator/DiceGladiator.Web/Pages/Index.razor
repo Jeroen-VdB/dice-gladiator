@@ -6,26 +6,51 @@
 
 <h1>Welcome gladaitors!</h1>
 
-*Insert rules*
+<p>
+	*Insert rules*
+</p>
 
-Let the battle...
-<button class="btn btn-primary" @onclick="NewGame">Begin</button>
+@foreach (var player in newPlayers)
+{
+	<p>
+		Player name: <input @bind="player.Name" />
+		<button class="btn btn-danger" @onclick="() => RemovePlayer(player)">🗑️</button>
+	</p>
+}
+<button class="btn btn-success" @onclick="AddPlayer">➕</button>
+
+<p>
+	Let the battle...
+	<button class="btn btn-primary" @onclick="NewGame">Begin</button>
+</p>
 
 @code {
 
-    private void NewGame()
-    {
-        var players = new List<Player>
-        {
-            new Player("Player1"),
-            new Player("Player2"),
-            new Player("Player3"),
-            new Player("Player4"),
-        };
+	private List<Player> newPlayers = new List<Player>
+	{
+		new Player()
+	};
 
-        GameService.Start(players, 1000);
+	private void AddPlayer() => newPlayers.Add(new Player());
+	private void RemovePlayer(Player player) => newPlayers.Remove(player);
 
-        NavigationManager.NavigateTo("game");
-    }
+	private void UpdatePlayerList(Player player)
+	{
+		if (string.IsNullOrEmpty(player.Name))
+		{
+			newPlayers.Remove(player);
+		}
+		else
+		{
+			newPlayers.Add(new Player());
+		}
+	}
+
+	private void NewGame()
+	{
+		GameService.Start(newPlayers.Where(p => !string.IsNullOrEmpty(p.Name)).ToList(), 1000);
+
+		NavigationManager.NavigateTo("game");
+	}
 
 }
