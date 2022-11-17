@@ -3,34 +3,11 @@
 
 <PageTitle>Dice Gladiator</PageTitle>
 
-<img src="/img/spartan-silhouette.png" asp-append-version="true" width="300px" />
+<EnemyDisplay />
 
-<p>
-    🎖️: @GameService.CurrentEnemy.Score
-</p>
+<EndRound @ref="EndRoundModel" />
 
-<p>
-    ❤️: @GameService.CurrentEnemy.Score
-</p>
-
-<p>
-    👣: @GameService.CurrentEnemy.Speed
-</p>
-
-<p>
-    👥: @GameService.CurrentEnemy.Duo
-</p>
-
-<p>
-    🎯: @GameService.CurrentEnemy.WeakSpot
-</p>
-
-<p>
-    💀: @GameService.CurrentEnemy.Elite
-</p>
-
-
-<button class="btn btn-primary" @onclick="NextEnemy">FIGHT</button>
+<button class="btn btn-primary" @onclick="() => EndRoundModel?.Open()">FIGHT</button>
 
 <h3>Leaderboard:</h3>
 @foreach (var player in GameService.Players)
@@ -41,8 +18,5 @@
 }
 
 @code {
-    private void NextEnemy()
-    {
-        GameService.NextEnemy(null);
-    }
+	private EndRound? EndRoundModel { get; set; }
 }
