@@ -1,7 +1,7 @@
 ﻿@foreach (var player in Players)
 {
 	<p>
-		Player name: <input @bind="player.Name" />
+		Player name: <input @bind="player.Name" @onkeydown="@HandleKeyDown" />
 		<button class="btn btn-danger" @onclick="() => RemovePlayer(player)">🗑️</button>
 	</p>
 }
@@ -15,6 +15,15 @@
 		new Player()
 	};
 
-	private void AddPlayer() => Players.Add(new Player());
+	public  void AddPlayer() => Players.Add(new Player());
 	private void RemovePlayer(Player player) => Players.Remove(player);
+
+	private void HandleKeyDown(KeyboardEventArgs e)
+	{
+		if (e.Code == "Enter")
+		{
+			AddPlayer();
+			StateHasChanged();
+		}
+	}
 }
