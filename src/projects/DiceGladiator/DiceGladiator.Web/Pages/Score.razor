@@ -1,0 +1,20 @@
+﻿@page "/score"
+@inject GameService GameService;
+@inject NavigationManager NavigationManager;
+
+<h3>Leaderboard:</h3>
+@foreach (var player in GameService.Players)
+{
+	<p>
+		<strong>@player.Name:</strong> @player.Score
+	</p>
+}
+
+<button class="btn btn-primary" @onclick="NextFight">NEXT FIGHT</button>
+
+@code {
+	private void NextFight()
+	{
+		NavigationManager.NavigateTo("game");
+	}
+}
