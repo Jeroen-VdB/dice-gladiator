@@ -6,18 +6,18 @@ namespace DiceGladiator.Domain.Services
     {
         private bool eliteHasPassed;
 
-        /// <summary>
-        /// Default constructor, initializes an empty list of players and a new default enemy.
-        /// </summary>
+        ///// <summary>
+        ///// Default constructor, initializes an empty list of players and a new default enemy.
+        ///// </summary>
         public GameService()
         {
             Players = new List<Player>();
             CurrentEnemy = new Enemy();
         }
 
-        public List<Player> Players { get; private set; }
-        public Enemy CurrentEnemy { get; private set; }
-        public int ScoreLimit { get; private set; }
+        public List<Player> Players { get; set; }
+        public Enemy CurrentEnemy { get; set; }
+        public int ScoreLimit { get; set; }
 
         /// <summary>
         /// Initialize a new game, starting with a provided list of players.
