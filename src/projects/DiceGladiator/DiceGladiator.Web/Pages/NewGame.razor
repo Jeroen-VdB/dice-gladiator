@@ -1,6 +1,7 @@
-﻿@page "/"
+﻿@page "/new-game"
 @inject GameService GameService;
 @inject NavigationManager NavigationManager;
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 <PageTitle>Welcome</PageTitle>
 
@@ -14,18 +15,18 @@
 
 <p>
 	Let the battle...
-	<button class="btn btn-primary" @onclick="NewGame">Begin</button>
+	<button class="btn btn-primary" @onclick="StartGame">Begin</button>
 </p>
 
 @code {
 
 	private PlayerManagement NewPlayers = new();
 
-	private void NewGame()
+	private async Task StartGame()
 	{
 		GameService.Start(NewPlayers.Players.Where(p => !string.IsNullOrEmpty(p.Name)).ToList(), 1000);
+		await localStorage.SetItemAsync("gameSession", GameService);
 
-		NavigationManager.NavigateTo("game");
+		NavigationManager.NavigateTo("/");
 	}
-
 }

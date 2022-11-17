@@ -7,7 +7,7 @@ namespace DiceGladiator.Tests.Domain.Services
 	{
 		private const int ScoreLimit = 1000;
 		private GameService _gameService;
-		private List<Player> _players = new List<Player> { new Player { Name = "Player1" } };
+		private List<Player> _players = new List<Player> { new Player { Name = "Player1", Score = 10 } };
 
 		[SetUp]
 		public void Setup()
@@ -24,6 +24,17 @@ namespace DiceGladiator.Tests.Domain.Services
 				_gameService.NextEnemy(_players.FirstOrDefault());
 				Assert.That(_gameService.CurrentEnemy.Health, Is.LessThan(40));
 			}
+		}
+
+		[Test]
+		public void ResumePreviousGameTest()
+		{
+			var newSession = new GameService();
+
+			newSession.ResumePreviousGame(_gameService);
+
+			Assert.That(newSession.Players.First().Name, Is.EqualTo("Player1"));
+			Assert.That(newSession.Players.First().Score, Is.EqualTo(10));
 		}
 	}
 }

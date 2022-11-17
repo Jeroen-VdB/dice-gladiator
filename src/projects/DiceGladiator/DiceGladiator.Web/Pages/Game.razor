@@ -1,11 +1,15 @@
-﻿@page "/game"
+﻿@page "/"
+@using System.Text.Json;
 @inject GameService GameService;
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+@inject NavigationManager NavigationManager;
+@inject ILogger<Game> logger;
 
 <PageTitle>Dice Gladiator</PageTitle>
 
 <EnemyDisplay @ref="EnemyDisplay" />
 
-<EndRound @ref="EndRoundModal" NextRound="NextRound" />
+<EndRound @ref="EndRoundModal" NextRound="Refresh" />
 
 <button class="btn btn-primary" @onclick="() => EndRoundModal?.Open()">FIGHT</button>
 
@@ -16,7 +20,25 @@
 	private EndRound? EndRoundModal { get; set; }
 	private Leaderboard? Leaderboard { get; set; }
 
-	private void NextRound()
+	protected override async Task OnInitializedAsync()
+	{
+		var gameSession = await localStorage.GetItemAsync<GameService>("gameSession");
+
+		if (!GameService.Players.Any() && gameSession == null)
+		{
+			NavigationManager.NavigateTo("new-game");
+		}
+		else if (!GameService.Players.Any())
+		{
+			GameService.ResumePreviousGame(gameSession);
+			Refresh();
+
+			logger.LogInformation("GameSession: {gamesession}", JsonSerializer.Serialize(gameSession));
+			logger.LogInformation("GameService: {GameService}", JsonSerializer.Serialize(GameService));
+		}
+	}
+
+	private void Refresh()
 	{
 		EnemyDisplay?.Refresh();
 		Leaderboard?.Refresh();

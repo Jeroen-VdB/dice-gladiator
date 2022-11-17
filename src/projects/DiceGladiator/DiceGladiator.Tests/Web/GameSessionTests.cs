@@ -19,7 +19,7 @@ namespace DiceGladiator.Tests.Web
 		public async Task StoreAndGetGameService()
 		{
 			// Arrange
-			var players = new List<Player> { new Player { Name = "Player1" } };
+			var players = new List<Player> { new Player { Name = "Player1", Score = 10 } };
 			var gameService = new GameService();
 			gameService.Start(players, 1000);
 
@@ -28,7 +28,8 @@ namespace DiceGladiator.Tests.Web
 			var gameSession = await _localStorageService.GetItemAsync<GameService>("gameSession");
 
 			// Assert
-			Assert.That(gameSession.Players.Any(), Is.True);
+			Assert.That(gameSession.Players.First().Name, Is.EqualTo("Player1"));
+			Assert.That(gameSession.Players.First().Score, Is.EqualTo(10));
 		}
 	}
 }

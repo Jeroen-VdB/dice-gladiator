@@ -47,6 +47,17 @@ namespace DiceGladiator.Domain.Services
         /// <returns>Bool if a player has reache the score limit.</returns>
         public bool HasAPlayerWon() => Players.Any(p => p.Score > ScoreLimit);
 
+        /// <summary>
+        /// Override the public properties of this game with the previous ones
+        /// </summary>
+        /// <param name="previousGameSession">Previous game isntance</param>
+        public void ResumePreviousGame(GameService previousGameSession)
+        {
+            Players = previousGameSession.Players;
+            ScoreLimit = previousGameSession.ScoreLimit;
+            CurrentEnemy = previousGameSession.CurrentEnemy;
+        }
+
         private bool MakeElite()
         {
             if (!eliteHasPassed)
