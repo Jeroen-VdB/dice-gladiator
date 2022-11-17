@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceGladiator.Domain", "Dic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceGladiator.Web", "DiceGladiator.Web\DiceGladiator.Web.csproj", "{24810D9C-8B3F-4E03-A8AF-A04F27E79412}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceGladiator.Tests", "DiceGladiator.Tests\DiceGladiator.Tests.csproj", "{900F6A06-B084-4410-BD5C-F835C62873BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{24810D9C-8B3F-4E03-A8AF-A04F27E79412}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24810D9C-8B3F-4E03-A8AF-A04F27E79412}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24810D9C-8B3F-4E03-A8AF-A04F27E79412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{900F6A06-B084-4410-BD5C-F835C62873BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{900F6A06-B084-4410-BD5C-F835C62873BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{900F6A06-B084-4410-BD5C-F835C62873BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{900F6A06-B084-4410-BD5C-F835C62873BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
