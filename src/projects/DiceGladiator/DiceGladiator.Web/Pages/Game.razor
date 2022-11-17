@@ -3,20 +3,23 @@
 
 <PageTitle>Dice Gladiator</PageTitle>
 
-<EnemyDisplay />
+<EnemyDisplay @ref="EnemyDisplay" />
 
-<EndRound @ref="EndRoundModel" />
+<EndRound @ref="EndRoundModal" NextRound="NextRound" />
 
-<button class="btn btn-primary" @onclick="() => EndRoundModel?.Open()">FIGHT</button>
+<button class="btn btn-primary" @onclick="() => EndRoundModal?.Open()">FIGHT</button>
 
-<h3>Leaderboard:</h3>
-@foreach (var player in GameService.Players)
-{
-	<p>
-        <strong>@player.Name:</strong> @player.Score
-	</p>
-}
+<Leaderboard @ref="Leaderboard" />
 
 @code {
-	private EndRound? EndRoundModel { get; set; }
+	private EnemyDisplay? EnemyDisplay { get; set; }
+	private EndRound? EndRoundModal { get; set; }
+	private Leaderboard? Leaderboard { get; set; }
+
+	private void NextRound()
+	{
+		EnemyDisplay?.Refresh();
+		Leaderboard?.Refresh();
+		StateHasChanged();
+	}
 }

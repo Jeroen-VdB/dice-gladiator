@@ -2,15 +2,10 @@
 @inject GameService GameService;
 @inject NavigationManager NavigationManager;
 
-<h3>Leaderboard:</h3>
-@foreach (var player in GameService.Players)
-{
-	<p>
-		<strong>@player.Name:</strong> @player.Score
-	</p>
-}
+<Leaderboard />
 
-<button class="btn btn-primary" @onclick="NextFight">NEXT FIGHT</button>
+<button class="btn btn-primary" @onclick="NextFight">RESTART</button>
+<button class="btn btn-primary" @onclick="NextFight">NEW GAME</button>
 
 @code {
 	private void NextFight()

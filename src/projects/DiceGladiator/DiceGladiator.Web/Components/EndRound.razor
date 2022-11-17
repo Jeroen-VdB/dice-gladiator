@@ -1,4 +1,6 @@
-﻿@inject GameService GameService;
+﻿@using DiceGladiator.Web.Pages;
+@inject GameService GameService;
+@inject NavigationManager NavigationManager;
 
 <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
 	<div class="modal-dialog" role="document">
@@ -10,14 +12,14 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				@foreach (var player in GameService.Players)
+				<button type="button" class="btn btn-danger" @onclick="() => ConfirmEndRound(null)">No one :(</button><br>
+				@foreach(var player in GameService.Players)
 				{
-					@player.Name
+					<button type="button" class="btn btn-primary" @onclick="() => ConfirmEndRound(player)">@player.Name</button><br>
 				}
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">Next fight</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Close()">Cancel</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="Close">Cancel</button>
 			</div>
 		</div>
 	</div>
@@ -29,6 +31,11 @@
 }
 
 @code {
+	private string? SelectedPlayerName { get; set; }
+
+	[Parameter]
+	public EventCallback NextRound { get; set; }
+
 	public Guid Guid = Guid.NewGuid();
 	public string ModalDisplay = "none;";
 	public string ModalClass = "";
@@ -48,5 +55,12 @@
 		ModalClass = "";
 		ShowBackdrop = false;
 		StateHasChanged();
+	}
+
+	public async Task ConfirmEndRound(Player? player)
+	{
+		GameService.NextEnemy(player);
+		await NextRound.InvokeAsync();
+		Close();
 	}
 }
