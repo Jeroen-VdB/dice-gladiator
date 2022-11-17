@@ -1,0 +1,17 @@
+﻿@inject GameService GameService;
+
+<h3>Leaderboard:</h3>
+
+@foreach (var player in GameService.Players)
+{
+	<p>
+		<strong>@player.Name:</strong> @player.Score
+	</p>
+}
+
+@code {
+    public void Refresh()
+    {
+        StateHasChanged();
+    }
+}
