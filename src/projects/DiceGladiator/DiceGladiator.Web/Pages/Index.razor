@@ -10,14 +10,7 @@
 	*Insert rules*
 </p>
 
-@foreach (var player in newPlayers)
-{
-	<p>
-		Player name: <input @bind="player.Name" />
-		<button class="btn btn-danger" @onclick="() => RemovePlayer(player)">🗑️</button>
-	</p>
-}
-<button class="btn btn-success" @onclick="AddPlayer">➕</button>
+<PlayerManagement Players=@newPlayers/>
 
 <p>
 	Let the battle...
@@ -30,21 +23,6 @@
 	{
 		new Player()
 	};
-
-	private void AddPlayer() => newPlayers.Add(new Player());
-	private void RemovePlayer(Player player) => newPlayers.Remove(player);
-
-	private void UpdatePlayerList(Player player)
-	{
-		if (string.IsNullOrEmpty(player.Name))
-		{
-			newPlayers.Remove(player);
-		}
-		else
-		{
-			newPlayers.Add(new Player());
-		}
-	}
 
 	private void NewGame()
 	{

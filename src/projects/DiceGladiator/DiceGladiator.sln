@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceGladiator.Domain", "DiceGladiator.Domain\DiceGladiator.Domain.csproj", "{8815C140-5942-48A6-8DC1-4D828BC89C75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceGladiator.Domain", "DiceGladiator.Domain\DiceGladiator.Domain.csproj", "{8815C140-5942-48A6-8DC1-4D828BC89C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceGladiator.Web", "DiceGladiator.Web\DiceGladiator.Web.csproj", "{24810D9C-8B3F-4E03-A8AF-A04F27E79412}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceGladiator.Web", "DiceGladiator.Web\DiceGladiator.Web.csproj", "{24810D9C-8B3F-4E03-A8AF-A04F27E79412}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

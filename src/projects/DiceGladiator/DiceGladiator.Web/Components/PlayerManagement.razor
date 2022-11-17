@@ -1,0 +1,20 @@
+﻿@foreach (var player in Players)
+{
+	<p>
+		Player name: <input @bind="player.Name" />
+		<button class="btn btn-danger" @onclick="() => RemovePlayer(player)">🗑️</button>
+	</p>
+}
+<button class="btn btn-success" @onclick="AddPlayer">➕</button>
+
+@code {
+
+	[Parameter]
+	public List<Player> Players { get; set; } = new List<Player>
+	{
+		new Player()
+	};
+
+	private void AddPlayer() => Players.Add(new Player());
+	private void RemovePlayer(Player player) => Players.Remove(player);
+}
