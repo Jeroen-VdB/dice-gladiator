@@ -7,6 +7,7 @@
 
 <PageTitle>Dice Gladiator</PageTitle>
 
+<CascadingValue Value="GameService">
 <EnemyDisplay @ref="EnemyDisplay" />
 
 <EndRound @ref="EndRoundModal" NextRound="Refresh" />
@@ -14,6 +15,7 @@
 <button class="btn btn-primary" @onclick="() => EndRoundModal?.Open()">FIGHT</button>
 
 <Leaderboard @ref="Leaderboard" />
+</CascadingValue>
 
 @code {
 	private EnemyDisplay? EnemyDisplay { get; set; }
@@ -22,26 +24,26 @@
 
 	protected override async Task OnInitializedAsync()
 	{
+		if (GameService.Players.Any())
+			return;
+
 		var gameSession = await localStorage.GetItemAsync<GameService>("gameSession");
 
-		if (!GameService.Players.Any() && gameSession == null)
-		{
-			NavigationManager.NavigateTo("new-game");
-		}
-		else if (!GameService.Players.Any())
+		if (gameSession != null)
 		{
 			GameService.ResumePreviousGame(gameSession);
-			Refresh();
 
 			logger.LogInformation("GameSession: {gamesession}", JsonSerializer.Serialize(gameSession));
 			logger.LogInformation("GameService: {GameService}", JsonSerializer.Serialize(GameService));
+		}
+		else
+		{
+			NavigationManager.NavigateTo("new-game");
 		}
 	}
 
 	private void Refresh()
 	{
-		EnemyDisplay?.Refresh();
-		Leaderboard?.Refresh();
-		StateHasChanged();
+		//Trigger Direct State Change
 	}
 }

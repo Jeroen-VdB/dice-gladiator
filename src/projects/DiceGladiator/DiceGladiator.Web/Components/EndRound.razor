@@ -1,8 +1,4 @@
-﻿@using DiceGladiator.Web.Pages;
-@inject GameService GameService;
-@inject NavigationManager NavigationManager;
-
-<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+﻿<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -32,6 +28,9 @@
 
 @code {
 	private string? SelectedPlayerName { get; set; }
+
+	[CascadingParameter]
+	public GameService GameService { get; set; }
 
 	[Parameter]
 	public EventCallback NextRound { get; set; }

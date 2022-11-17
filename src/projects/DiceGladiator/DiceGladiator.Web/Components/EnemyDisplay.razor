@@ -1,6 +1,4 @@
-﻿@inject GameService GameService;
-
-<img src="/img/spartan-silhouette.png" asp-append-version="true" class="img-fluid" max-width="300" />
+﻿<img src="/img/spartan-silhouette.png" asp-append-version="true" class="img-fluid" max-width="300" />
 
 <p>
     🎖️: @GameService.CurrentEnemy.Score
@@ -27,8 +25,8 @@
 </p>
 
 @code {
-    public void Refresh()
-    {
-        StateHasChanged();
-    }
+
+	[CascadingParameter]
+	public GameService GameService { get; set; }
+
 }

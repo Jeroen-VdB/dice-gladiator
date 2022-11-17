@@ -1,6 +1,4 @@
-﻿@inject GameService GameService;
-
-<h3>Leaderboard:</h3>
+﻿<h3>Leaderboard:</h3>
 
 @foreach (var player in GameService.Players)
 {
@@ -10,6 +8,10 @@
 }
 
 @code {
+
+	[CascadingParameter]
+	public GameService GameService { get; set; }
+
     public void Refresh()
     {
         StateHasChanged();
