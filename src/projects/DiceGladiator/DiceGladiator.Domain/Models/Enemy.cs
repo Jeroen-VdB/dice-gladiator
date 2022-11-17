@@ -16,9 +16,9 @@
         {
             var random = new Random();
             Health = random.Next(4, 40) * (elite ? 10 : 1);
-            Speed = IsEnabled(random) ? random.Next(6, 20) : 0;
-            WeakSpot = IsEnabled(random) ? random.Next(1, 20) : 0;
-            Duo = IsEnabled(random);
+            Speed = IsEnabled(random, 5) ? random.Next(6, 20) : 0;
+            WeakSpot = IsEnabled(random, 6) ? random.Next(1, 20) : 0;
+            Duo = IsEnabled(random, 8);
             Score = previousScore + Health + (Health - Speed) + WeakSpot + (Duo ? 10 : 0);
             Elite = elite;
         }
@@ -30,6 +30,6 @@
         public bool Elite { get; set; }
         public int Score { get; set; }
 
-        private bool IsEnabled(Random random) => random.Next(1, 10) > 8;
+        private bool IsEnabled(Random random, int rate) => random.Next(1, 10) > rate;
     }
 }
