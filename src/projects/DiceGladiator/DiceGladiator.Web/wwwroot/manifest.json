@@ -1,6 +1,6 @@
 {
-  "name": "DiceGladiator.Web",
-  "short_name": "DiceGladiator.Web",
+  "name": "Dice Gladiator",
+  "short_name": "DiceGladiator",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

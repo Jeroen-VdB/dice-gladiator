@@ -47,9 +47,13 @@ namespace DiceGladiator.Domain.Models
 		/// </summary>
 		public void CalculateScore()
         {
-			Score = PreviousScore + Health + (Health - Speed) + WeakSpot + (Duo ? 10 : 0);
+			Score = Health + SpeedBonus + WeakSpotBonus + DuoBonus;
 		}
 
-        private bool IsEnabled(Random random, int rate) => random.Next(1, 10) > rate;
+        private int SpeedBonus => Speed > 0 ? Health - Speed : 0;
+        private int WeakSpotBonus => WeakSpot;
+        private int DuoBonus => Duo ? 10 : 0;
+
+		private bool IsEnabled(Random random, int rate) => random.Next(1, 10) > rate;
     }
 }

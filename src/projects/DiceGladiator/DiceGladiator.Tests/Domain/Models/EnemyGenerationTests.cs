@@ -10,25 +10,13 @@ namespace DiceGladiator.Tests.Domain.Models
 		}
 
 		[Test]
-		public void MaxHealth()
+		public void MaxHealthTest()
 		{
 			for (int i = 0; i < 1000; i++)
 			{
 				var enemy = new Enemy();
 				Assert.That(enemy.Health, Is.LessThan(40));
 			}
-		}
-
-
-		[Test]
-		public void ScoreTests()
-		{
-			var enemy = new Enemy
-			{
-				Health = 10
-			};
-
-			Assert.That(enemy.Score, Is.EqualTo(10));
 		}
 	}
 }
