@@ -39,7 +39,7 @@ namespace DiceGladiator.Domain.Services
         {
             player?.AddScore(CurrentEnemy.TotalScore);
 
-            var previousScore = player == null ? CurrentEnemy.Score : 0;
+            var previousScore = player == null ? CurrentEnemy.TotalScore : 0;
             CurrentEnemy = new Enemy(previousScore, MakeElite());
         }
 
