@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
+<MudThemeProvider IsDarkMode="true" Theme="_themeManager.Theme"/>
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -21,6 +21,12 @@
             @Body
         </MudContainer>
     </MudMainContent>
+
+    <!-- REMOVE MUDBLAZOR THEME MANAGER WHEN DONE -->
+    <MudThemeManagerButton OnClick="@((e) => OpenThemeManager(true))" />
+    <MudThemeManager Open="_themeManagerOpen" OpenChanged="OpenThemeManager" Theme="_themeManager" ThemeChanged="UpdateTheme" />
+    <!-- REMOVE MUDBLAZOR THEME MANAGER WHEN DONE -->
+
 </MudLayout>
 
 @code {
@@ -30,4 +36,25 @@
     {
         _drawerOpen = !_drawerOpen;
     }
+
+    // REMOVE MUDBLAZOR THEME MANAGER WHEN DONE
+    private ThemeManagerTheme _themeManager = new ThemeManagerTheme();
+    public bool _themeManagerOpen = false;
+
+    void OpenThemeManager(bool value)
+    {
+        _themeManagerOpen = value;
+    }
+
+    void UpdateTheme(ThemeManagerTheme value)
+    {
+        _themeManager = value;
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        StateHasChanged();
+    }
+    // REMOVE MUDBLAZOR THEME MANAGER WHEN DONE
 }
