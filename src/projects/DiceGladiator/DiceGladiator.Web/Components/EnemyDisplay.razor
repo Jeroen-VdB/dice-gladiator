@@ -8,6 +8,12 @@
 		</span>
 	}
 	🎖️: @GameService.CurrentEnemy.Score
+	@if (GameService.CurrentEnemy.PreviousScore > 0)
+	{
+		<span>
+			(+ @GameService.CurrentEnemy.PreviousScore)
+		</span>
+	}
 </p>
 
 <p>

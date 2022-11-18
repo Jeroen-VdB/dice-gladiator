@@ -37,7 +37,7 @@ namespace DiceGladiator.Domain.Services
         /// <param name="player">The player that won the fight, if null, no player's score will increase and the score will be accumulated to the next enemy.</param>
         public void NextEnemy (Player? player)
         {
-            player?.AddScore(CurrentEnemy.Score);
+            player?.AddScore(CurrentEnemy.TotalScore);
 
             var previousScore = player == null ? CurrentEnemy.Score : 0;
             CurrentEnemy = new Enemy(previousScore, MakeElite());

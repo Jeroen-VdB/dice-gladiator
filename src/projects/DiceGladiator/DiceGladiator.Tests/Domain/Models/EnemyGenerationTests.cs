@@ -18,5 +18,17 @@ namespace DiceGladiator.Tests.Domain.Models
 				Assert.That(enemy.Health, Is.LessThan(40));
 			}
 		}
+
+
+		[Test]
+		public void ScoreTests()
+		{
+			var enemy = new Enemy
+			{
+				Health = 10
+			};
+
+			Assert.That(enemy.Score, Is.EqualTo(10));
+		}
 	}
 }
