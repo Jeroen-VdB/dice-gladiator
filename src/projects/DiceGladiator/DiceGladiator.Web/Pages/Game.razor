@@ -45,5 +45,6 @@
 	private void Refresh()
 	{
 		//Trigger Direct State Change
+		logger.LogInformation("NextEnemy: {nextEnemy}", JsonSerializer.Serialize(GameService.CurrentEnemy));
 	}
 }

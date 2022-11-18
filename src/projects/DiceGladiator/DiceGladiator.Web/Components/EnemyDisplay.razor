@@ -1,27 +1,44 @@
 ﻿<img src="/img/spartan-silhouette.png" asp-append-version="true" class="img-fluid" style="height:150px" />
 
 <p>
-    🎖️: @GameService.CurrentEnemy.Score
+	@if (GameService.CurrentEnemy.Elite)
+	{
+		<div>
+			💀
+		</div>
+	}
+	🎖️: @GameService.CurrentEnemy.Score
 </p>
 
 <p>
-    ❤️: @GameService.CurrentEnemy.Health
+	❤️: @GameService.CurrentEnemy.Health
 </p>
 
 <p>
-    👣: @GameService.CurrentEnemy.Speed
+	@if (GameService.CurrentEnemy.Speed > 0)
+	{
+		<div>
+			👣: @GameService.CurrentEnemy.Speed
+		</div>
+	}
 </p>
 
 <p>
-    👥: @GameService.CurrentEnemy.Duo
+	@if (GameService.CurrentEnemy.Duo)
+	{
+		<div>
+			👥
+		</div>
+	}
 </p>
 
 <p>
-    🎯: @GameService.CurrentEnemy.WeakSpot
-</p>
-
-<p>
-    💀: @GameService.CurrentEnemy.Elite
+	@if (GameService.CurrentEnemy.WeakSpot > 0)
+	{
+		<div>
+			🎯: @GameService.CurrentEnemy.WeakSpot
+		</div>
+	}
 </p>
 
 @code {
