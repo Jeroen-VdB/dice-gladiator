@@ -3,9 +3,9 @@
 <p>
 	@if (GameService.CurrentEnemy.Elite)
 	{
-		<div>
+		<span>
 			💀
-		</div>
+		</span>
 	}
 	🎖️: @GameService.CurrentEnemy.Score
 </p>
@@ -17,27 +17,27 @@
 <p>
 	@if (GameService.CurrentEnemy.Speed > 0)
 	{
-		<div>
+		<span>
 			👣: @GameService.CurrentEnemy.Speed
-		</div>
+		</span>
 	}
 </p>
 
 <p>
 	@if (GameService.CurrentEnemy.Duo)
 	{
-		<div>
+		<span>
 			👥
-		</div>
+		</span>
 	}
 </p>
 
 <p>
 	@if (GameService.CurrentEnemy.WeakSpot > 0)
 	{
-		<div>
+		<span>
 			🎯: @GameService.CurrentEnemy.WeakSpot
-		</div>
+		</span>
 	}
 </p>
 

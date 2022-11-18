@@ -27,6 +27,7 @@ namespace DiceGladiator.Domain.Services
         {
             Players = players;
             ScoreLimit = scoreLimit;
+            CurrentEnemy= new Enemy();
             eliteHasPassed = false;
         }
 
