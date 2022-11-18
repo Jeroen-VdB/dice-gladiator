@@ -1,11 +1,10 @@
 ﻿@foreach (var player in Players)
 {
-	<p>
-		Player name: <input @bind="player.Name" @onkeydown="@HandleKeyDown" />
-		<button class="btn btn-danger" @onclick="() => RemovePlayer(player)">🗑️</button>
-	</p>
+	<MudTextField @bind-Value="player.Name" Label="Outlined" Variant="Variant.Outlined" @onkeydown="@HandleKeyDown"></MudTextField>
+	<MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Delete" OnClick="() => RemovePlayer(player)" />
 }
-<button class="btn btn-success" @onclick="AddPlayer">➕</button>
+
+<MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" OnClick="AddPlayer" />
 
 @code {
 

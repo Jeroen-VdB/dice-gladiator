@@ -3,21 +3,18 @@
 @inject NavigationManager NavigationManager;
 @inject Blazored.LocalStorage.ILocalStorageService localStorage;
 
-<PageTitle>Welcome</PageTitle>
+<PageTitle>New game</PageTitle>
 
-<h1>Welcome gladaitors!</h1>
+<MudText Typo="Typo.h5">Welcome gladaitors!</MudText>
 
-<p>
-	*Insert rules*
-</p>
+<MudText Typo="Typo.body1">*Insert rules*</MudText>
 
 <PlayerManagement @ref="NewPlayers" />
 
-<p>
+<MudText Typo="Typo.body1">
 	Let the battle...
-	<button class="btn btn-primary" @onclick="StartGame">Begin</button>
-</p>
-
+	<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="StartGame">Begin</MudButton>
+</MudText>
 @code {
 
 	private PlayerManagement NewPlayers = new();
