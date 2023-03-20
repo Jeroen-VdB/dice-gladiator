@@ -30,67 +30,6 @@
 
 </MudGrid>
 
-<MudText Align="Align.Center">
-	@if (GameService.CurrentEnemy.Elite)
-	{
-		<span>
-
-		</span>
-	}
-	else
-	{
-	}
-
-
-</MudText>
-
-<p>
-	@if (GameService.CurrentEnemy.Elite)
-	{
-		<span>
-			💀
-		</span>
-	}
-	🎖️: @GameService.CurrentEnemy.Score
-	@if (GameService.CurrentEnemy.PreviousScore > 0)
-	{
-		<span>
-			(+ @GameService.CurrentEnemy.PreviousScore)
-		</span>
-	}
-</p>
-
-<p>
-	❤️: @GameService.CurrentEnemy.Health
-</p>
-
-<p>
-	@if (GameService.CurrentEnemy.Speed > 0)
-	{
-		<span>
-			👣: @GameService.CurrentEnemy.Speed
-		</span>
-	}
-</p>
-
-<p>
-	@if (GameService.CurrentEnemy.Duo)
-	{
-		<span>
-			👥
-		</span>
-	}
-</p>
-
-<p>
-	@if (GameService.CurrentEnemy.WeakSpot > 0)
-	{
-		<span>
-			🎯: @GameService.CurrentEnemy.WeakSpot
-		</span>
-	}
-</p>
-
 @code {
 	[CascadingParameter]
 	public GameService GameService { get; set; }

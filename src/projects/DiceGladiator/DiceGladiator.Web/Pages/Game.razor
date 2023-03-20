@@ -8,13 +8,18 @@
 <PageTitle>Dice Gladiator</PageTitle>
 
 <CascadingValue Value="GameService">
-<EnemyDisplay @ref="EnemyDisplay" />
 
-<EndRound @ref="EndRoundModal" NextRound="Refresh" />
+	<MudGrid Justify="Justify.Center">
+		<EnemyDisplay @ref="EnemyDisplay" />
 
-<button class="btn btn-primary" @onclick="() => EndRoundModal?.Open()">FIGHT</button>
+		<EndRound @ref="EndRoundModal" NextRound="Refresh" />
 
-<Leaderboard @ref="Leaderboard" />
+		<MudItem xs="12" Class="d-flex flex-column align-center">
+			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@EndRoundModal.Open">Fight</MudButton>
+		</MudItem>
+
+		<Leaderboard @ref="Leaderboard" />
+	</MudGrid>
 </CascadingValue>
 
 @code {
