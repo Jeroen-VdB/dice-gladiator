@@ -1,10 +1,20 @@
-﻿@foreach (var player in Players)
-{
-	<MudTextField @bind-Value="player.Name" Label="Outlined" Variant="Variant.Outlined" @onkeydown="@HandleKeyDown"></MudTextField>
-	<MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Delete" OnClick="() => RemovePlayer(player)" />
-}
+﻿<MudGrid Justify="Justify.Center">
+	@foreach (var player in Players)
+	{
+		<MudItem xs="10" sm="8">
+			<MudStack Row="true" AlignItems="AlignItems.Center">
+				<MudTextField @bind-Value="player.Name" Label="Participant name" Variant="Variant.Text" @onkeydown="@HandleKeyDown"></MudTextField>
 
-<MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" OnClick="AddPlayer" />
+				<MudTooltip Text="Delete participant">
+					<MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="() => RemovePlayer(player)" />
+				</MudTooltip>
+			</MudStack>
+		</MudItem>
+	}
+	<MudItem xs="12" Class="d-flex flex-column align-center">
+		<MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" OnClick="AddPlayer">Add participant</MudButton>
+	</MudItem>
+</MudGrid>
 
 @code {
 
@@ -14,7 +24,7 @@
 		new Player()
 	};
 
-	public  void AddPlayer() => Players.Add(new Player());
+	public void AddPlayer() => Players.Add(new Player());
 	private void RemovePlayer(Player player) => Players.Remove(player);
 
 	private void HandleKeyDown(KeyboardEventArgs e)
