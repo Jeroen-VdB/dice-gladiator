@@ -1,0 +1,33 @@
+﻿@if (Value != null && !Value.Equals("False") && !Value.Equals("0"))
+{
+	<MudItem xs="@ItemSize">
+		<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+			<MudTooltip Color="Color.Primary" Arrow="true">
+				<ChildContent>
+					<span style="@($"color:{IconAndTextColor};")" class="d-flex mud-width-full">
+						<MudIcon Icon="@Icon" />
+						@if (!Value.Equals("True"))
+						{
+							<MudText Style="font-weight:bold">&nbsp;@Value</MudText>
+						}
+					</span>
+				</ChildContent>
+				<TooltipContent>
+					<MudText Typo="Typo.h6">@TooltipTitle</MudText>
+					<MudText Typo="Typo.body2">@TooltipContent</MudText>
+				</TooltipContent>
+			</MudTooltip>
+		</MudPaper>
+	</MudItem>
+}
+
+@code {
+	//[Parameter] public RenderFragment ChildContent { get; set; }
+
+	[Parameter] public string? Value { get; set; }
+	[Parameter] public string? Icon { get; set; }
+	[Parameter] public string? TooltipTitle { get; set; }
+	[Parameter] public string? TooltipContent { get; set; }
+	[Parameter] public int ItemSize { get; set; }
+	[Parameter] public string? IconAndTextColor { get; set; }
+}
