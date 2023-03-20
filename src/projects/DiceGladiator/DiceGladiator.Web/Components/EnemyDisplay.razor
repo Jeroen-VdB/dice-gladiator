@@ -1,4 +1,136 @@
-﻿<img src="/img/spartan-silhouette.png" asp-append-version="true" class="img-fluid" style="height:150px" />
+﻿
+
+<MudGrid Justify="Justify.Center">
+	<MudItem xs="12">
+		<img src="/img/spartan-silhouette.png" asp-append-version="true" class="img-fluid" style="height:150px" />
+	</MudItem>
+	<MudItem xs="6">
+		<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+			<MudTooltip Color="Color.Primary" Arrow="true">
+				<ChildContent>
+					<span style="@($"color:{Colors.Green.Default};")" class="d-flex mud-width-full">
+						<MudIcon Icon="@Icons.Material.Filled.Star" />
+						<MudText Style="font-weight:bold">&nbsp;@GameService.CurrentEnemy.Score</MudText>
+					</span>
+				</ChildContent>
+				<TooltipContent>
+					<MudText Typo="Typo.h6">Score</MudText>
+					<MudText Typo="Typo.body2">TODO.</MudText>
+				</TooltipContent>
+			</MudTooltip>
+		</MudPaper>
+	</MudItem>
+	<MudItem xs="6">
+		<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+			<MudTooltip Color="Color.Primary" Arrow="true">
+				<ChildContent>
+					<span style="@($"color:{Colors.Pink.Default};")" class="d-flex mud-width-full">
+						<MudIcon Icon="@Icons.Material.Filled.HealthAndSafety" />
+						<MudText Style="font-weight:bold">&nbsp;@GameService.CurrentEnemy.Health</MudText>
+					</span>
+				</ChildContent>
+				<TooltipContent>
+					<MudText Typo="Typo.h6">Health</MudText>
+					<MudText Typo="Typo.body2">Your total dice roll should at least be @GameService.CurrentEnemy.Health to defeat this gladiator.</MudText>
+				</TooltipContent>
+			</MudTooltip>
+		</MudPaper>
+	</MudItem>
+	<MudItem xs="3">
+		<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+			<MudTooltip Color="Color.Primary" Arrow="true">
+				<ChildContent>
+					<span style="@($"color:{Colors.Blue.Default};")" class="d-flex mud-width-full">
+						<MudIcon Icon="@Icons.Material.Filled.HealthAndSafety" />
+						<MudText Style="font-weight:bold">&nbsp;@GameService.CurrentEnemy.Health</MudText>
+					</span>
+				</ChildContent>
+				<TooltipContent>
+					<MudText Typo="Typo.h6">Speed</MudText>
+					<MudText Typo="Typo.body2">Your total dice roll should at least be @GameService.CurrentEnemy.Health to defeat this gladiator.</MudText>
+				</TooltipContent>
+			</MudTooltip>
+		</MudPaper>
+	</MudItem>
+	<MudItem xs="3">
+		<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+			<MudTooltip Color="Color.Primary" Arrow="true">
+				<ChildContent>
+					<span style="@($"color:{Colors.Orange.Default};")" class="d-flex mud-width-full">
+						<MudIcon Icon="@Icons.Material.Filled.HealthAndSafety" />
+						<MudText Style="font-weight:bold">&nbsp;@GameService.CurrentEnemy.Health</MudText>
+					</span>
+				</ChildContent>
+				<TooltipContent>
+					<MudText Typo="Typo.h6">Weakspot</MudText>
+					<MudText Typo="Typo.body2">Your total dice roll should at least be @GameService.CurrentEnemy.Health to defeat this gladiator.</MudText>
+				</TooltipContent>
+			</MudTooltip>
+		</MudPaper>
+	</MudItem>
+	<MudItem xs="3">
+		<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+			<MudTooltip Color="Color.Primary" Arrow="true">
+				<ChildContent>
+					<span style="@($"color:{Colors.Purple.Default};")" class="d-flex mud-width-full">
+						<MudIcon Icon="@Icons.Material.Filled.HealthAndSafety" />
+						<MudText Style="font-weight:bold">&nbsp;@GameService.CurrentEnemy.Health</MudText>
+					</span>
+				</ChildContent>
+				<TooltipContent>
+					<MudText Typo="Typo.h6">Duo</MudText>
+					<MudText Typo="Typo.body2">Your total dice roll should at least be @GameService.CurrentEnemy.Health to defeat this gladiator.</MudText>
+				</TooltipContent>
+			</MudTooltip>
+		</MudPaper>
+	</MudItem>
+</MudGrid>
+
+<MudText Align="Align.Center">
+	@if (GameService.CurrentEnemy.Elite)
+	{
+		<span>
+			The arena champion with <span style="@($"color:{Colors.Pink.Default};font-weight:bold")">@GameService.CurrentEnemy.Health health</span> has arrived.
+			You'll probably need a critical hit to defeat this one, good luck! (The champion prevents previous points accumulation.)
+		</span>
+	}
+	else
+	{
+		<span>
+			A new gladiator with <span style="@($"color:{Colors.Pink.Default};font-weight:bold")">@GameService.CurrentEnemy.Health health</span> has arrived.
+		</span>
+	}
+	Your total dice roll should at least be @GameService.CurrentEnemy.Health to defeat this gladiator.
+	@if (GameService.CurrentEnemy.Speed > 0)
+	{
+		<br />
+		<span>
+			Watch out as this is a quick one. Strong attacks will take too long to execute. Make sure that all your dice rolls are lower than <span style="@($"color:{Colors.Blue.Default};font-weight:bold")">@GameService.CurrentEnemy.Speed</span>.
+		</span>
+	}
+	<br />
+	@if (GameService.CurrentEnemy.WeakSpot > 0)
+	{
+		<span>
+			The gladiator is equipped with a shiled. But as you study the gladiator's stance, you notice a weakspot. Roll a <MudElement Style="color:orange;font-weight:bold">@GameService.CurrentEnemy.WeakSpot</MudElement> with at least one dice to break his defence.
+		</span>
+	}
+	@if (GameService.CurrentEnemy.Duo)
+	{
+		<br />
+		<span>
+			As an extra challange, a second gladiator joined the fight. This prevents you from using the same attack twice, meaning you are not allowed to roll the same amount with different dice.
+		</span>
+	}
+	<br />
+	In total, this gladiator is worth <span style="@($"color:{Colors.Green.Default};font-weight:bold")">@GameService.CurrentEnemy.Score points</span>.
+	@if (GameService.CurrentEnemy.PreviousScore > 0)
+	{
+		<span>
+			Plus <span style="@($"color:{Colors.Teal.Default};font-weight:bold")">@GameService.CurrentEnemy.PreviousScore points</span> from previous undefeated gladiator(s).
+		</span>
+	}
+</MudText>
 
 <p>
 	@if (GameService.CurrentEnemy.Elite)
