@@ -4,21 +4,22 @@
 @inject Blazored.LocalStorage.ILocalStorageService localStorage;
 
 <PageTitle>New game</PageTitle>
-
-<MudGrid Justify="Justify.Center">
-	<MudItem xs="12" Class="d-flex flex-column align-center">
-		<MudText Typo="Typo.h5">Welcome gladaitors!</MudText>
-	</MudItem>
-	<MudItem xs="12" Class="d-flex flex-column align-center">
-		<MudText Typo="Typo.body1">*Insert rules*</MudText>
-	</MudItem>
-	<MudItem xs="12">
-		<PlayerManagement @ref="NewPlayers" />
-	</MudItem>
-	<MudItem xs="12" Class="d-flex flex-column align-center">
-		<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="StartGame">Let the battle begin</MudButton>
-	</MudItem>
-</MudGrid>
+<MudPaper>
+	<MudGrid Justify="Justify.Center">
+		<MudItem xs="12" Class="d-flex flex-column align-center">
+			<MudText Typo="Typo.h5">Welcome gladaitors!</MudText>
+		</MudItem>
+		<MudItem xs="12" Class="d-flex flex-column align-center">
+			<MudText Typo="Typo.body1">*Insert rules*</MudText>
+		</MudItem>
+		<MudItem xs="12">
+			<PlayerManagement @ref="NewPlayers" />
+		</MudItem>
+		<MudItem xs="12" Class="d-flex flex-column align-center">
+			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="StartGame">Let the battle begin</MudButton>
+		</MudItem>
+	</MudGrid>
+</MudPaper>
 
 @code {
 

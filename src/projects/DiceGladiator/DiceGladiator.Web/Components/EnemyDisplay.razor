@@ -1,6 +1,6 @@
 ﻿<MudGrid Justify="Justify.Center">
-	<MudItem xs="12">
-		<img src="/img/spartan-silhouette.png" asp-append-version="true" class="img-fluid" style="height:150px" />
+	<MudItem xs="12" Class="d-flex align-center justify-center mud-width-full">
+		<MudImage Src="img/gladiator1.png" Width="250" Alt="Gladiator" Elevation="25" Class="rounded-lg" />
 	</MudItem>
 	<EnemyAttribute ItemSize="6" Icon="@Icons.Material.Filled.Stars" IconAndTextColor="@Colors.Amber.Default"
 					Value="@GameService.CurrentEnemy.ScoreString" TooltipTitle="@nameof(@GameService.CurrentEnemy.Score)" TooltipContent="@GameService.CurrentEnemy.ScoreTooltip" />

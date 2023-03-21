@@ -10,15 +10,26 @@
 <CascadingValue Value="GameService">
 
 	<MudGrid Justify="Justify.Center">
-		<EnemyDisplay @ref="EnemyDisplay" />
+		<MudItem xs="12">
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
+				<EnemyDisplay @ref="EnemyDisplay" />
+			</MudPaper>
+		</MudItem>
 
 		<EndRound @ref="EndRoundModal" NextRound="Refresh" />
 
-		<MudItem xs="12" Class="d-flex flex-column align-center">
-			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@EndRoundModal.Open">Fight</MudButton>
+		<MudItem xs="12">
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+				<MudText>Select your dice and get ready to </MudText>
+				<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@EndRoundModal.Open">Fight</MudButton>
+			</MudPaper>
 		</MudItem>
 
-		<Leaderboard @ref="Leaderboard" />
+		<MudItem xs="12">
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+				<Leaderboard @ref="Leaderboard" />
+			</MudPaper>
+		</MudItem>
 	</MudGrid>
 </CascadingValue>
 
