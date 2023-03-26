@@ -5,34 +5,29 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="0">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudSpacer />
-        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/Jeroen-VdB/dice-gladiator/issues" Target="_blank" />
-    </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
-        <MudDrawerHeader>
-            <MudText Typo="Typo.h6">Dice Glaidator</MudText>
-        </MudDrawerHeader>
-        <NavMenu />
-    </MudDrawer>
-    <MudMainContent>
-        <div class="bg">
-            @*<div style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"><img src="img/colosseum1.png" />*@
-            @*<div style="position: fixed; top: 0; left: 0; height: 100vh; width: 100vh;"><img src="img/colosseum1.png" />*@
-        <MudContainer MaxWidth="MaxWidth.Small" Class="my-4 pt-4">
-            @Body
-            </MudContainer>
-        </div>
-    </MudMainContent>
-
+	<MudAppBar Elevation="0">
+		<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+		<MudSpacer />
+		<MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/Jeroen-VdB/dice-gladiator/issues" Target="_blank" />
+	</MudAppBar>
+	<MudDrawer @bind-Open="_drawerOpen" Elevation="1">
+		<MudDrawerHeader>
+			<MudText Typo="Typo.h6">Dice Glaidator</MudText>
+		</MudDrawerHeader>
+		<NavMenu />
+	</MudDrawer>
+	<MudMainContent>
+		<MudContainer MaxWidth="MaxWidth.Small" Class="my-4 pt-4">
+			@Body
+		</MudContainer>
+	</MudMainContent>
 </MudLayout>
 
 @code {
-    bool _drawerOpen = false;
+	bool _drawerOpen = false;
 
-    void DrawerToggle()
-    {
-        _drawerOpen = !_drawerOpen;
-    }
+	void DrawerToggle()
+	{
+		_drawerOpen = !_drawerOpen;
+	}
 }
