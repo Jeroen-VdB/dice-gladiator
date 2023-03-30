@@ -10,6 +10,17 @@
 <CascadingValue Value="GameService">
 
 	<MudGrid Justify="Justify.Center">
+		@if (GameService.RoundLimitReached())
+		{
+			<MudItem xs="12">
+				<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
+					<Winner />
+				</MudPaper>
+			</MudItem>
+		}
+		else
+		{
+			
 		<MudItem xs="12">
 			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
 				<EnemyDisplay @ref="EnemyDisplay" />
@@ -20,7 +31,8 @@
 			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
 				<PlayerFight @ref="PlayerFight" NextRound="Refresh" />
 			</MudPaper>
-		</MudItem>
+			</MudItem>
+		}
 
 		<MudItem xs="12">
 			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">

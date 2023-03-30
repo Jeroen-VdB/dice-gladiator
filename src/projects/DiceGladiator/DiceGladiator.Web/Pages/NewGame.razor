@@ -29,7 +29,7 @@
 
 	private async Task StartGame()
 	{
-		GameService.Start(NewPlayers.Players.Where(p => !string.IsNullOrEmpty(p.Name)).ToList(), 1000);
+		GameService.Start(NewPlayers.Players.Where(p => !string.IsNullOrEmpty(p.Name)).ToList(), 10);
 		await localStorage.SetItemAsync("gameSession", GameService);
 
 		NavigationManager.NavigateTo("/");

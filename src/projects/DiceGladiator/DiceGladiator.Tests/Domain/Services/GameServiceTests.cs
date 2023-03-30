@@ -5,7 +5,7 @@ namespace DiceGladiator.Tests.Domain.Services
 {
 	public class GameServiceTests
 	{
-		private const int ScoreLimit = 1000;
+		private const int ScoreLimit = 10;
 
 		[SetUp]
 		public void Setup()

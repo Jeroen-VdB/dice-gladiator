@@ -21,7 +21,7 @@ namespace DiceGladiator.Tests.Web
 			// Arrange
 			var players = new List<Player> { new Player { Name = "Player1", Score = 10 } };
 			var gameService = new GameService();
-			gameService.Start(players, 1000);
+			gameService.Start(players, 10);
 
 			// Act
 			await _localStorageService.SetItemAsync("gameSession", gameService);
