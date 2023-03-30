@@ -30,9 +30,12 @@ namespace DiceGladiator.Domain.Models
 			Elite = elite;
 			PreviousScore = previousScore;
 
+			DisplayHint = random.Next(0, 4);
+
 			CalculateScore();
 		}
 
+		public int DisplayHint { get; set; }
 		public int Health { get; set; }
 		public string HealthTooltip => $"This is the amount of hit points a gladiator can take. Your total combined dice roll should be {Health} at least to defeat this gladiator.";
 		public int Speed { get; set; }
