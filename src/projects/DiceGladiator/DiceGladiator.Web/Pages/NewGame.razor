@@ -13,7 +13,7 @@
 			<MudText Typo="Typo.body1">*Insert rules*</MudText>
 		</MudItem>
 		<MudItem xs="12">
-			<PlayerManagement @ref="NewPlayers" />
+			<PlayerManagement @ref="NewPlayers" Players="GameService.GetOldPlayers()" />
 		</MudItem>
 		<MudItem xs="12" Class="d-flex flex-column align-center">
 			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="StartGame">Let the battle begin</MudButton>
@@ -23,7 +23,9 @@
 
 @code {
 
-	private PlayerManagement NewPlayers = new();
+	private PlayerManagement NewPlayers;
+
+	private List<Player> OldPlayers;
 
 	private async Task StartGame()
 	{

@@ -19,14 +19,20 @@
 		<EndRound @ref="EndRoundModal" NextRound="Refresh" />
 
 		<MudItem xs="12">
-			<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
-				<MudText>Select your dice and get ready to </MudText>
-				<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@EndRoundModal.Open">Fight</MudButton>
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4">
+				<MudGrid Justify="Justify.Center">
+					<MudItem xs="12" Class="d-flex align-center justify-center mud-width-full">
+						<MudText>Choose your dice and get ready to </MudText>
+					</MudItem>
+					<MudItem xs="12" Class="d-flex align-center justify-center mud-width-full">
+						<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@EndRoundModal.Open">Fight</MudButton>
+					</MudItem>
+				</MudGrid>
 			</MudPaper>
 		</MudItem>
 
 		<MudItem xs="12">
-			<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4">
 				<Leaderboard @ref="Leaderboard" />
 			</MudPaper>
 		</MudItem>

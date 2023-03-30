@@ -58,9 +58,20 @@ namespace DiceGladiator.Domain.Services
             Players = previousGameSession.Players;
             ScoreLimit = previousGameSession.ScoreLimit;
             CurrentEnemy = previousGameSession.CurrentEnemy;
-        }
+		}
 
-        private bool MakeElite()
+		/// <summary>
+		/// Get a list of the current players to initiate a new player list for the next game. Contains 1 empty player when no previous game was started
+		/// </summary>
+		/// <param name="previousGameSession">Previous game isntance</param>
+		public List<Player> GetOldPlayers()
+		{
+            return Players?.Any() ?? false
+                ? new List<Player>(Players)
+                : new List<Player> { new() };
+		}
+
+		private bool MakeElite()
         {
             if (!eliteHasPassed)
             {
