@@ -16,23 +16,14 @@
 			</MudPaper>
 		</MudItem>
 
-		<EndRound @ref="EndRoundModal" NextRound="Refresh" />
-
 		<MudItem xs="12">
-			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4">
-				<MudGrid Justify="Justify.Center">
-					<MudItem xs="12" Class="d-flex align-center justify-center mud-width-full">
-						<MudText>Choose your dice and get ready to </MudText>
-					</MudItem>
-					<MudItem xs="12" Class="d-flex align-center justify-center mud-width-full">
-						<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@EndRoundModal.Open">Fight</MudButton>
-					</MudItem>
-				</MudGrid>
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
+				<PlayerFight @ref="PlayerFight" NextRound="Refresh" />
 			</MudPaper>
 		</MudItem>
 
 		<MudItem xs="12">
-			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4">
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
 				<Leaderboard @ref="Leaderboard" />
 			</MudPaper>
 		</MudItem>
@@ -41,7 +32,7 @@
 
 @code {
 	private EnemyDisplay? EnemyDisplay { get; set; }
-	private EndRound? EndRoundModal { get; set; }
+	private PlayerFight? PlayerFight { get; set; }
 	private Leaderboard? Leaderboard { get; set; }
 
 	protected override async Task OnInitializedAsync()
@@ -66,6 +57,7 @@
 
 	private void Refresh()
 	{
+		StateHasChanged();
 		//Trigger Direct State Change
 		logger.LogInformation("NextEnemy: {nextEnemy}", JsonSerializer.Serialize(GameService.CurrentEnemy));
 	}
