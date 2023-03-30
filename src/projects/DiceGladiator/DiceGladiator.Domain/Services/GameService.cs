@@ -67,11 +67,10 @@ namespace DiceGladiator.Domain.Services
 		/// <summary>
 		/// Get a list of the current players to initiate a new player list for the next game. Contains 1 empty player when no previous game was started
 		/// </summary>
-		/// <param name="previousGameSession">Previous game isntance</param>
-		public List<Player> GetOldPlayers()
+		public List<Player> GetPreviousPlayers()
 		{
 			return Players?.Any() ?? false
-				? new List<Player>(Players)
+				? new List<Player>(Players.Select(p => p.Copy()).ToList())
 				: new List<Player> { new() };
 		}
 
