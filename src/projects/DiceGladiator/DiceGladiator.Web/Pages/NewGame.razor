@@ -3,28 +3,33 @@
 @inject NavigationManager NavigationManager;
 @inject Blazored.LocalStorage.ILocalStorageService localStorage;
 
-<PageTitle>Welcome</PageTitle>
-
-<h1>Welcome gladaitors!</h1>
-
-<p>
-	*Insert rules*
-</p>
-
-<PlayerManagement @ref="NewPlayers" />
-
-<p>
-	Let the battle...
-	<button class="btn btn-primary" @onclick="StartGame">Begin</button>
-</p>
+<PageTitle>New game</PageTitle>
+<MudPaper>
+	<MudGrid Justify="Justify.Center">
+		<MudItem xs="12" Class="d-flex flex-column align-center">
+			<MudText Typo="Typo.h5">Welcome gladaitors!</MudText>
+		</MudItem>
+		<MudItem xs="12" Class="d-flex flex-column align-center">
+			<MudText Typo="Typo.body1">*Insert rules*</MudText>
+		</MudItem>
+		<MudItem xs="12">
+			<PlayerManagement @ref="NewPlayers" Players="GameService.GetPreviousPlayers()" />
+		</MudItem>
+		<MudItem xs="12" Class="d-flex flex-column align-center">
+			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="StartGame">Let the battle begin</MudButton>
+		</MudItem>
+	</MudGrid>
+</MudPaper>
 
 @code {
 
-	private PlayerManagement NewPlayers = new();
+	private PlayerManagement NewPlayers;
+
+	private List<Player> OldPlayers;
 
 	private async Task StartGame()
 	{
-		GameService.Start(NewPlayers.Players.Where(p => !string.IsNullOrEmpty(p.Name)).ToList(), 1000);
+		GameService.Start(NewPlayers.Players.Where(p => !string.IsNullOrEmpty(p.Name)).ToList(), 10);
 		await localStorage.SetItemAsync("gameSession", GameService);
 
 		NavigationManager.NavigateTo("/");

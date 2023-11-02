@@ -1,0 +1,46 @@
+﻿@inject Blazored.LocalStorage.ILocalStorageService localStorage;
+
+<MudGrid Justify="Justify.Center">
+	<MudItem xs="12" Class="d-flex align-center justify-center">
+		<MudText>Choose your dice and get ready to fight.</MudText>
+	</MudItem>
+	<MudItem xs="12" Class="d-flex align-center justify-center">
+		<MudText>After rolling the dice, select this round's winner:</MudText>
+	</MudItem>
+	<MudItem xs="12" Class="d-flex align-center justify-center">
+		<MudSelect @bind-Value="RoundWinner" T="Player" Label="Select winner" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
+			<MudSelectItem Value="@NoOne" />
+			@foreach (var player in GameService.Players)
+			{
+				<MudSelectItem Value="@player" />
+			}
+		</MudSelect>
+	</MudItem>
+	<MudItem xs="12" Class="d-flex align-center justify-center">
+		<MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrEmpty(RoundWinner?.Name)" OnClick="ConfirmNextRound">Next round</MudButton>
+	</MudItem>
+</MudGrid>
+
+@code {
+
+	[CascadingParameter]
+	public GameService GameService { get; set; }
+
+	[Parameter]
+	public EventCallback NextRound { get; set; }
+
+	private Player NoOne = new Player { Name = "No one :(" };
+	private Player RoundWinner { get; set; }
+
+	public async Task ConfirmNextRound()
+	{
+		if (RoundWinner == null)
+			return;
+
+		GameService.NextEnemy(RoundWinner.Equals(NoOne) ? null : RoundWinner);
+		await localStorage.SetItemAsync("gameSession", GameService);
+		RoundWinner = null;
+		await NextRound.InvokeAsync();
+	}
+
+}

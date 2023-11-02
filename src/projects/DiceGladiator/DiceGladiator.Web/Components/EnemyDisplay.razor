@@ -1,55 +1,47 @@
-﻿<img src="/img/spartan-silhouette.png" asp-append-version="true" class="img-fluid" style="height:150px" />
+﻿<MudGrid Justify="Justify.Center">
+	<MudItem xs="12" Class="d-flex align-center justify-center mud-width-full">
+		<MudText Typo="Typo.h5">Round: @GameService.CurrentRound/@GameService.RoundLimit</MudText>
+	</MudItem>
+	<MudItem xs="12" Class="d-flex align-center justify-center mud-width-full">
+		<MudImage Src="@Display" Width="250" Alt="Gladiator" Elevation="25" Class="rounded-lg" />
+	</MudItem>
+	<EnemyAttribute ItemSize="6" Icon="@Icons.Material.Filled.Stars" IconAndTextColor="@Colors.Amber.Default"
+					Value="@GameService.CurrentEnemy.ScoreString" TooltipTitle="@nameof(@GameService.CurrentEnemy.Score)" TooltipContent="@GameService.CurrentEnemy.ScoreTooltip" />
 
-<p>
 	@if (GameService.CurrentEnemy.Elite)
 	{
-		<span>
-			💀
-		</span>
-	}
-	🎖️: @GameService.CurrentEnemy.Score
-	@if (GameService.CurrentEnemy.PreviousScore > 0)
+		<EnemyAttribute ItemSize="6" Icon="@EliteSvg" IconAndTextColor="@Colors.Pink.Default"
+					Value="@GameService.CurrentEnemy.Health.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Elite)" TooltipContent="@GameService.CurrentEnemy.EliteTooltip" />
+	} 
+	else
 	{
-		<span>
-			(+ @GameService.CurrentEnemy.PreviousScore)
-		</span>
+		<EnemyAttribute ItemSize="6" Icon="@Icons.Material.Filled.HealthAndSafety" IconAndTextColor="@Colors.Pink.Default"
+					Value="@GameService.CurrentEnemy.Health.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Health)" TooltipContent="@GameService.CurrentEnemy.HealthTooltip" />
 	}
-</p>
 
-<p>
-	❤️: @GameService.CurrentEnemy.Health
-</p>
+	<EnemyAttribute ItemSize="3" Icon="@SpeedSvg" IconAndTextColor="@Colors.Blue.Default"
+					Value="@GameService.CurrentEnemy.Speed.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Speed)" TooltipContent="@GameService.CurrentEnemy.SpeedTooltip" />
 
-<p>
-	@if (GameService.CurrentEnemy.Speed > 0)
-	{
-		<span>
-			👣: @GameService.CurrentEnemy.Speed
-		</span>
-	}
-</p>
+	<EnemyAttribute ItemSize="3" Icon="@WeakSpotSvg" IconAndTextColor="@Colors.Orange.Default"
+					Value="@GameService.CurrentEnemy.WeakSpot.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.WeakSpot)" TooltipContent="@GameService.CurrentEnemy.WeakSpotTooltip" />
 
-<p>
-	@if (GameService.CurrentEnemy.Duo)
-	{
-		<span>
-			👥
-		</span>
-	}
-</p>
+	<EnemyAttribute ItemSize="3" Icon="@DuoSvg" IconAndTextColor="@Colors.Green.Default"
+					Value="@GameService.CurrentEnemy.Duo.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Duo)" TooltipContent="@GameService.CurrentEnemy.DuoTooltip" />
 
-<p>
-	@if (GameService.CurrentEnemy.WeakSpot > 0)
-	{
-		<span>
-			🎯: @GameService.CurrentEnemy.WeakSpot
-		</span>
-	}
-</p>
+	<EnemyAttribute ItemSize="3" Icon="@PoisonSvg" IconAndTextColor="@Colors.Purple.Default"
+					Value="@GameService.CurrentEnemy.Poison.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Poison)" TooltipContent="@GameService.CurrentEnemy.PoisonTooltip" />
+
+</MudGrid>
 
 @code {
-
 	[CascadingParameter]
 	public GameService GameService { get; set; }
 
+	private string Display => $"img/gladiator{GameService.CurrentEnemy.DisplayHint}.png";
+
+	private const string DuoSvg = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><title>sword-cross</title><path d=\"M6.2,2.44L18.1,14.34L20.22,12.22L21.63,13.63L19.16,16.1L22.34,19.28C22.73,19.67 22.73,20.3 22.34,20.69L21.63,21.4C21.24,21.79 20.61,21.79 20.22,21.4L17,18.23L14.56,20.7L13.15,19.29L15.27,17.17L3.37,5.27V2.44H6.2M15.89,10L20.63,5.26V2.44H17.8L13.06,7.18L15.89,10M10.94,15L8.11,12.13L5.9,14.34L3.78,12.22L2.37,13.63L4.84,16.1L1.66,19.29C1.27,19.68 1.27,20.31 1.66,20.7L2.37,21.41C2.76,21.8 3.39,21.8 3.78,21.41L7,18.23L9.44,20.7L10.85,19.29L8.73,17.17L10.94,15Z\" /></svg>";
+	private const string SpeedSvg = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><title>run-fast</title><path d=\"M16.5,5.5A2,2 0 0,0 18.5,3.5A2,2 0 0,0 16.5,1.5A2,2 0 0,0 14.5,3.5A2,2 0 0,0 16.5,5.5M12.9,19.4L13.9,15L16,17V23H18V15.5L15.9,13.5L16.5,10.5C17.89,12.09 19.89,13 22,13V11C20.24,11.03 18.6,10.11 17.7,8.6L16.7,7C16.34,6.4 15.7,6 15,6C14.7,6 14.5,6.1 14.2,6.1L9,8.3V13H11V9.6L12.8,8.9L11.2,17L6.3,16L5.9,18L12.9,19.4M4,9A1,1 0 0,1 3,8A1,1 0 0,1 4,7H7V9H4M5,5A1,1 0 0,1 4,4A1,1 0 0,1 5,3H10V5H5M3,13A1,1 0 0,1 2,12A1,1 0 0,1 3,11H7V13H3Z\" /></svg>";
+	private const string PoisonSvg = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><title>bottle-tonic-skull</title><path d=\"M19 13V22H5V13C5 10.24 7.24 8 10 8V6H9V5H15V6H14V8C16.76 8 19 10.24 19 13M13 4L14 2H10L11 4H13M12 11C9.79 11 8 12.79 8 15C8 16 8.39 16.9 9 17.59V19H10.25V17.5H11.38V19H12.63V17.5H13.75V19H15V17.59C15.61 16.9 16 16 16 15C16 12.79 14.21 11 12 11M10.5 15C9.95 15 9.5 14.55 9.5 14S9.95 13 10.5 13 11.5 13.45 11.5 14 11.05 15 10.5 15M11.25 16.25L12 15L12.75 16.25H11.25M13.5 15C12.95 15 12.5 14.55 12.5 14S12.95 13 13.5 13 14.5 13.45 14.5 14 14.05 15 13.5 15Z\" /></svg>";
+	private const string WeakSpotSvg = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><title>bullseye-arrow</title><path d=\"M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,10.84 21.79,9.69 21.39,8.61L19.79,10.21C19.93,10.8 20,11.4 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.6,4 13.2,4.07 13.79,4.21L15.4,2.6C14.31,2.21 13.16,2 12,2M19,2L15,6V7.5L12.45,10.05C12.3,10 12.15,10 12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12C14,11.85 14,11.7 13.95,11.55L16.5,9H18L22,5H19V2M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12H16A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8V6Z\" /></svg>";
+	private const string EliteSvg = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><title>skull</title><path d=\"M12,2A9,9 0 0,0 3,11C3,14.03 4.53,16.82 7,18.47V22H9V19H11V22H13V19H15V22H17V18.46C19.47,16.81 21,14 21,11A9,9 0 0,0 12,2M8,11A2,2 0 0,1 10,13A2,2 0 0,1 8,15A2,2 0 0,1 6,13A2,2 0 0,1 8,11M16,11A2,2 0 0,1 18,13A2,2 0 0,1 16,15A2,2 0 0,1 14,13A2,2 0 0,1 16,11M12,14L13.5,17H10.5L12,14Z\" /></svg>";
 }

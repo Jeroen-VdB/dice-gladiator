@@ -8,18 +8,43 @@
 <PageTitle>Dice Gladiator</PageTitle>
 
 <CascadingValue Value="GameService">
-<EnemyDisplay @ref="EnemyDisplay" />
 
-<EndRound @ref="EndRoundModal" NextRound="Refresh" />
+	<MudGrid Justify="Justify.Center">
+		@if (GameService.RoundLimitReached())
+		{
+			<MudItem xs="12">
+				<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
+					<Winner />
+				</MudPaper>
+			</MudItem>
+		}
+		else
+		{
+			
+		<MudItem xs="12">
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
+				<EnemyDisplay @ref="EnemyDisplay" />
+			</MudPaper>
+		</MudItem>
 
-<button class="btn btn-primary" @onclick="() => EndRoundModal?.Open()">FIGHT</button>
+		<MudItem xs="12">
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
+				<PlayerFight @ref="PlayerFight" NextRound="Refresh" />
+			</MudPaper>
+			</MudItem>
+		}
 
-<Leaderboard @ref="Leaderboard" />
+		<MudItem xs="12">
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
+				<Leaderboard @ref="Leaderboard" />
+			</MudPaper>
+		</MudItem>
+	</MudGrid>
 </CascadingValue>
 
 @code {
 	private EnemyDisplay? EnemyDisplay { get; set; }
-	private EndRound? EndRoundModal { get; set; }
+	private PlayerFight? PlayerFight { get; set; }
 	private Leaderboard? Leaderboard { get; set; }
 
 	protected override async Task OnInitializedAsync()
@@ -44,6 +69,7 @@
 
 	private void Refresh()
 	{
+		StateHasChanged();
 		//Trigger Direct State Change
 		logger.LogInformation("NextEnemy: {nextEnemy}", JsonSerializer.Serialize(GameService.CurrentEnemy));
 	}
