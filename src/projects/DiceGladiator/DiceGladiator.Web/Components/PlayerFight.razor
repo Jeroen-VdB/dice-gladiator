@@ -24,13 +24,13 @@
 @code {
 
 	[CascadingParameter]
-	public GameService GameService { get; set; }
+	public required GameService GameService { get; set; }
 
 	[Parameter]
 	public EventCallback NextRound { get; set; }
 
 	private Player NoOne = new Player { Name = "No one :(" };
-	private Player RoundWinner { get; set; }
+	private Player? RoundWinner { get; set; }
 
 	public async Task ConfirmNextRound()
 	{

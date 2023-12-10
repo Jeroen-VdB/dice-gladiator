@@ -45,7 +45,7 @@ namespace DiceGladiator.Domain.Models
 		public bool Poison { get; set; } //TODO
 		public string PoisonTooltip => $"This gladiator's weapon is laced with poison. If you are defeated, you will be limited in the next 3 rounds. This means you will have to exlcude your highest chosen dice from your total hit points combination.";
 		public int WeakSpot { get; set; }
-		public string WeakSpotTooltip => $"The gladiator is equipped with a shiled. But as you study the gladiator's stance, you notice a weakspot. You need to roll a {WeakSpot} with at least one dice to break his defence.";
+		public string WeakSpotTooltip => $"The gladiator is equipped with a shield. But as you study the gladiator's stance, you notice a weakspot. You need to roll a {WeakSpot} with at least one dice to break his defence.";
 		public bool Elite { get; set; }
 		public string EliteTooltip => $"The arena champion with {Health} hit points has arrived. You'll probably need a critical hit to defeat this one, good luck! (The champion prevents previous point accumulation.)";
 		public int Score { get; set; }
