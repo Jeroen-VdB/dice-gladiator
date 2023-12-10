@@ -20,17 +20,26 @@
 		}
 		else
 		{
-			
-		<MudItem xs="12">
-			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
-				<EnemyDisplay @ref="EnemyDisplay" />
-			</MudPaper>
-		</MudItem>
 
-		<MudItem xs="12">
-			<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
-				<PlayerFight @ref="PlayerFight" NextRound="Refresh" />
-			</MudPaper>
+			<MudItem xs="12">
+				<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
+					<EnemyDisplay @ref="EnemyDisplay" />
+				</MudPaper>
+			</MudItem>
+
+			if (GameService.CurrentEnemy.Poison)
+			{
+				<MudItem xs="12">
+					<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
+						<SetPoison />
+					</MudPaper>
+				</MudItem>
+			}
+
+			<MudItem xs="12">
+				<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 pa-4">
+					<PlayerFight @ref="PlayerFight" NextRound="Refresh" />
+				</MudPaper>
 			</MudItem>
 		}
 

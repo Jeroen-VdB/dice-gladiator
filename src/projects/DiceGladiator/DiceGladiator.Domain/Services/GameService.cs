@@ -40,6 +40,7 @@ public class GameService
 	public void NextEnemy(Player? player)
 	{
 		player?.AddScore(CurrentEnemy.TotalScore);
+		Players.ForEach(p => p.NextRound());
 
 		var previousScore = player == null ? CurrentEnemy.TotalScore : 0;
 		CurrentEnemy = new Enemy(previousScore, MakeElite());
