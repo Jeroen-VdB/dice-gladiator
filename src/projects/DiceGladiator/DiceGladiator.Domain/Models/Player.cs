@@ -13,7 +13,7 @@
 
 		public override string ToString() => Name ?? string.Empty;
 
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			var other = obj as Player;
 			return other?.Name == Name;
