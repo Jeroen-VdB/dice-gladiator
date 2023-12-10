@@ -29,7 +29,7 @@ public class Enemy
 		WeakSpot = IsEnabled(random, enemyDifficulty.WeakSpotRate) ? random.Next(enemyDifficulty.MinWeakSpot, enemyDifficulty.MaxWeakSpot) : 0;
 		Duo = IsEnabled(random, enemyDifficulty.DuoRate);
 		Poison = IsEnabled(random, enemyDifficulty.PoisonRate);
-		Health = random.Next(enemyDifficulty.MinHealth, GetMaxHealth(enemyDifficulty.MaxHealth)) * (Elite ? 10 : 1);
+		Health = GetHealth(random, enemyDifficulty.MinHealth, enemyDifficulty.MaxHealth, enemyDifficulty.HealthDividerRate);
 		DisplayHint = random.Next(0, 5);
 
 		CalculateScore();
@@ -43,7 +43,7 @@ public class Enemy
 	public bool Duo { get; private set; }
 	public string DuoTooltip => $"This gladiator is accompanied by another, adding an extra challenge. You are not allowed to use the same attack twice, meaning you cannot roll the same number with different dice.";
 	public bool Poison { get; private set; }
-	public string PoisonTooltip => $"Beware! This gladiator's weapon is laced with poison. If defeated, you will be limited in the next 3 rounds, excluding your highest chosen dice from your total hit points combination.";
+	public string PoisonTooltip => $"Beware! This gladiator's weapon is laced with poison. If you are defeated, you will be limited in the next 3 rounds, excluding your highest chosen dice from your total hit points combination. (Note: if someone else defeated the gladiator before it was your turn, you do not get poisoned.)";
 	public int WeakSpot { get; private set; }
 	public string WeakSpotTooltip => $"This gladiator carries a shield, but you notice a weak spot in their stance. Roll a {WeakSpot} with at least one dice to break their defence.";
 	public bool Elite { get; private set; }
@@ -60,26 +60,30 @@ public class Enemy
 	/// </summary>
 	public void CalculateScore()
 	{
-		Score = Health + SpeedBonus + WeakSpotBonus + DuoBonus;
+		Score = Health + SpeedBonus + WeakSpotBonus + DuoBonus + PoisonBonus;
 	}
 
-	private int SpeedBonus => Speed > 0 ? Health - Speed : 0;
-	private int WeakSpotBonus => WeakSpot;
-	private int DuoBonus => Duo ? 10 : 0;
+	private int SpeedBonus => Speed > 0 ? 20 : 0;
+	private int WeakSpotBonus => (int)Math.Round((double)WeakSpot / 60 * 200);
+	private int DuoBonus => Duo ? 20 : 0;
+	private int PoisonBonus => Poison ? 20 : 0;
 
 	// Determin a rate on how often the attribute should be applied
 	private bool IsEnabled(Random random, int rate) => random.Next(1, 10) > rate;
 
-	public int GetMaxHealth(int defaultMaxHealth)
+	public int GetHealth(Random random, int minHealth, int maxHealth, int healthDividerRate)
 	{
 		var maxHealthPossibilities = new List<int>
 		{
-			defaultMaxHealth,
-			Speed > 0 ? ReduceHealthBySpeed(defaultMaxHealth) : defaultMaxHealth,
-			WeakSpot > 0 ? 56 : defaultMaxHealth
+			maxHealth,
+			Speed > 0 ? ReduceHealthBySpeed(maxHealth) : maxHealth,
+			WeakSpot > 0 ? 56 : maxHealth
 		};
+		maxHealth = maxHealthPossibilities.Min();
 
-		return maxHealthPossibilities.Min();
+		var dividedHealthWithEliteModifier = (random.Next(minHealth, maxHealth) * (Elite ? 10 : 1)) / random.Next(1, healthDividerRate);
+
+		return Math.Max(Math.Max(6, dividedHealthWithEliteModifier), Speed);
 	}
 
 	private int ReduceHealthBySpeed(int health)

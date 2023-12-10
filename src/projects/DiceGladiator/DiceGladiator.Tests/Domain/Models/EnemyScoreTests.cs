@@ -20,13 +20,23 @@ public class EnemyScore
 	}
 
 	[Test]
+	public void ScoreHealthAndWeakSpotTest()
+	{
+		var enemy = new EnemyTestBuilder().WithWeakSpot(10).WithHealth(40).Build();
+
+		enemy.CalculateScore();
+
+		Assert.That(enemy.Score, Is.EqualTo(73));
+	}
+
+	[Test]
 	public void ScoreHealthAndSpeedTest()
 	{
 		var enemy = new EnemyTestBuilder().WithSpeed(10).WithMinHealth(46).Build();
 
 		enemy.CalculateScore();
 
-		Assert.That(enemy.Score, Is.EqualTo(82));
+		Assert.That(enemy.Score, Is.EqualTo(66));
 	}
 
 	[Test]
@@ -36,7 +46,17 @@ public class EnemyScore
 
 		enemy.CalculateScore();
 
-		Assert.That(enemy.Score, Is.EqualTo(25));
+		Assert.That(enemy.Score, Is.EqualTo(35));
+	}
+
+	[Test]
+	public void ScoreHealthAndPoisonTest()
+	{
+		var enemy = new EnemyTestBuilder().IsPoison().WithHealth(15).Build();
+
+		enemy.CalculateScore();
+
+		Assert.That(enemy.Score, Is.EqualTo(35));
 	}
 
 	[Test]

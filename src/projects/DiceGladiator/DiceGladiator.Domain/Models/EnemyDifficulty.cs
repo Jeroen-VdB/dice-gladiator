@@ -7,6 +7,7 @@ public class EnemyDifficulty
 {
 	public int MinHealth { get; set; } = 6;
 	public int MaxHealth { get; set; } = 60;
+	public int HealthDividerRate { get; set; } = 3;
 	public int MinSpeed { get; set; } = 6;
 	public int MaxSpeed { get; set; } = 20;
 	public int SpeedRate { get; set; } = 5;

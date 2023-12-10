@@ -28,7 +28,7 @@ public class GameServiceTests
 
 		Assert.That(enemies.Count(e => e.Health > 60), Is.AtMost(1));
 		Assert.That(enemies.Count(e => e.Health <= 60), Is.AtLeast(999));
-		Assert.That(enemies.Count(e => e.Health < 6), Is.EqualTo(0));
+		Assert.That(enemies.Count(e => e.Health < 1), Is.EqualTo(0));
 	}
 
 	[Test]

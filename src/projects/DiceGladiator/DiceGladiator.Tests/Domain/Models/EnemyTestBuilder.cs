@@ -15,6 +15,14 @@ public class EnemyTestBuilder
 		_enemyDifficulty.WeakSpotRate = 10;
 		_enemyDifficulty.PoisonRate = 10;
 		_enemyDifficulty.DuoRate = 10;
+		_enemyDifficulty.HealthDividerRate = 1;
+	}
+
+	public EnemyTestBuilder WithHealthDividerRate(int healthDividerRate)
+	{
+		_enemyDifficulty.HealthDividerRate = healthDividerRate;
+
+		return this;
 	}
 
 	public EnemyTestBuilder WithMinHealth(int health)
