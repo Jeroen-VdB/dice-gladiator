@@ -1,22 +1,22 @@
 ﻿<MudGrid Justify="Justify.Center">
 	<MudItem xs="12" Class="d-flex align-center justify-center mud-width-full">
 		<MudText Typo="Typo.h5">Round: @GameService.CurrentRound/@GameService.RoundLimit</MudText>
-	</MudItem>
-	<MudItem xs="12" Class="d-flex align-center justify-center mud-width-full">
-		<MudImage Src="@Display" Width="250" Alt="Gladiator" Elevation="25" Class="rounded-lg" />
-	</MudItem>
-	<EnemyAttribute ItemSize="6" Icon="@Icons.Material.Filled.Stars" IconAndTextColor="@Colors.Amber.Default"
-					Value="@GameService.CurrentEnemy.ScoreString" TooltipTitle="@nameof(@GameService.CurrentEnemy.Score)" TooltipContent="@GameService.CurrentEnemy.ScoreTooltip" />
+		</MudItem>
+		<MudItem xs="12" Class="d-flex align-center justify-center mud-width-full">
+			<MudImage Src="@Display" Width="250" Alt="Gladiator" Elevation="25" Class="rounded-lg" />
+		</MudItem>
+		<EnemyAttribute ItemSize="6" Icon="@Icons.Material.Filled.Stars" IconAndTextColor="@Colors.Amber.Default"
+						Value="@GameService.CurrentEnemy.ScoreString" TooltipTitle="@nameof(@GameService.CurrentEnemy.Score)" TooltipContent="@GameService.CurrentEnemy.ScoreTooltip" />
 
-	@if (GameService.CurrentEnemy.Elite)
+		@if (GameService.CurrentEnemy.Elite)
 	{
 		<EnemyAttribute ItemSize="6" Icon="@EliteSvg" IconAndTextColor="@Colors.Pink.Default"
-					Value="@GameService.CurrentEnemy.Health.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Elite)" TooltipContent="@GameService.CurrentEnemy.EliteTooltip" />
-	} 
+						Value="@GameService.CurrentEnemy.Health.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Elite)" TooltipContent="@GameService.CurrentEnemy.EliteTooltip" />
+	}
 	else
 	{
 		<EnemyAttribute ItemSize="6" Icon="@Icons.Material.Filled.HealthAndSafety" IconAndTextColor="@Colors.Pink.Default"
-					Value="@GameService.CurrentEnemy.Health.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Health)" TooltipContent="@GameService.CurrentEnemy.HealthTooltip" />
+						Value="@GameService.CurrentEnemy.Health.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Health)" TooltipContent="@GameService.CurrentEnemy.HealthTooltip" />
 	}
 
 	<EnemyAttribute ItemSize="3" Icon="@SpeedSvg" IconAndTextColor="@Colors.Blue.Default"
@@ -25,10 +25,10 @@
 	<EnemyAttribute ItemSize="3" Icon="@WeakSpotSvg" IconAndTextColor="@Colors.Orange.Default"
 					Value="@GameService.CurrentEnemy.WeakSpot.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.WeakSpot)" TooltipContent="@GameService.CurrentEnemy.WeakSpotTooltip" />
 
-	<EnemyAttribute ItemSize="3" Icon="@DuoSvg" IconAndTextColor="@Colors.Green.Default"
+	<EnemyAttribute ItemSize="3" Icon="@DuoSvg" IconAndTextColor="@Colors.BlueGrey.Default"
 					Value="@GameService.CurrentEnemy.Duo.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Duo)" TooltipContent="@GameService.CurrentEnemy.DuoTooltip" />
 
-	<EnemyAttribute ItemSize="3" Icon="@PoisonSvg" IconAndTextColor="@Colors.Purple.Default"
+	<EnemyAttribute ItemSize="3" Icon="@PoisonSvg" IconAndTextColor="@Colors.Green.Default"
 					Value="@GameService.CurrentEnemy.Poison.ToString()" TooltipTitle="@nameof(@GameService.CurrentEnemy.Poison)" TooltipContent="@GameService.CurrentEnemy.PoisonTooltip" />
 
 </MudGrid>

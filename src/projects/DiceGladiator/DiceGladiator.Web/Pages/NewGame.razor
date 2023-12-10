@@ -23,13 +23,13 @@
 
 @code {
 
-	private PlayerManagement NewPlayers = new PlayerManagement();
+private PlayerManagement NewPlayers = new PlayerManagement();
 
-	private async Task StartGame()
-	{
-		GameService.Start(NewPlayers.Players.Where(p => !string.IsNullOrEmpty(p.Name)).ToList(), 10);
-		await localStorage.SetItemAsync("gameSession", GameService);
+private async Task StartGame()
+{
+	GameService.Start(NewPlayers.Players.Where(p => !string.IsNullOrEmpty(p.Name)).ToList(), 10);
+	await localStorage.SetItemAsync("gameSession", GameService);
 
-		NavigationManager.NavigateTo("/");
-	}
+	NavigationManager.NavigateTo("/");
+}
 }
