@@ -37,22 +37,22 @@ namespace DiceGladiator.Domain.Models
 
 		public int DisplayHint { get; set; }
 		public int Health { get; set; }
-		public string HealthTooltip => $"This is the amount of hit points a gladiator can take. Your total combined dice roll should be {Health} at least to defeat this gladiator.";
+		public string HealthTooltip => $"The gladiator's health indicates the total hit points it can take. To defeat this gladiator, your combined dice roll should be at least {Health}.";
 		public int Speed { get; set; }
-		public string SpeedTooltip => $"This is a quick gladiator. Strong attacks will take too long to execute. Make sure that all your dice rolls are lower than {Speed}.";
+		public string SpeedTooltip => $"This gladiator is quick. Strong attacks may take too long to execute. Ensure that all your dice rolls are lower than {Speed} to maintain the advantage.";
 		public bool Duo { get; set; }
-		public string DuoTooltip => $"As an extra challange, a second gladiator joined the fight. This prevents you from using the same attack twice, meaning you are not allowed to roll the same amount with different dice.";
+		public string DuoTooltip => $"This gladiator is accompanied by another, adding an extra challenge. You are not allowed to use the same attack twice, meaning you cannot roll the same number with different dice.";
 		public bool Poison { get; set; } //TODO
-		public string PoisonTooltip => $"This gladiator's weapon is laced with poison. If you are defeated, you will be limited in the next 3 rounds. This means you will have to exlcude your highest chosen dice from your total hit points combination.";
+		public string PoisonTooltip => $"Beware! This gladiator's weapon is laced with poison. If defeated, you will be limited in the next 3 rounds, excluding your highest chosen dice from your total hit points combination.";
 		public int WeakSpot { get; set; }
-		public string WeakSpotTooltip => $"The gladiator is equipped with a shield. But as you study the gladiator's stance, you notice a weakspot. You need to roll a {WeakSpot} with at least one dice to break his defence.";
+		public string WeakSpotTooltip => $"This gladiator carries a shield, but you notice a weak spot in their stance. Roll a {WeakSpot} with at least one dice to break their defence.";
 		public bool Elite { get; set; }
-		public string EliteTooltip => $"The arena champion with {Health} hit points has arrived. You'll probably need a critical hit to defeat this one, good luck! (The champion prevents previous point accumulation.)";
+		public string EliteTooltip => $"The arena champion has arrived with {Health} hit points. A critical hit might be necessary to defeat them. Good luck! (Note: The champion prevents previous point accumulation.)";
 		public int Score { get; set; }
-		public string ScoreTooltip => $"In total, this gladiator is worth {Score + PreviousScore} score points. {PreviousScoreTooltip}";
+		public string ScoreTooltip => $"This gladiator is worth {Score + PreviousScore} score points in total. {PreviousScoreTooltip}";
 		public string ScoreString => PreviousScore > 0 ? $"{Score + PreviousScore} ({Score} + {PreviousScore})" : $"{Score}";
 		public int PreviousScore { get; set; }
-		internal string PreviousScoreTooltip => PreviousScore > 0 ? $"The current score of {Score} is accumulated with {PreviousScore} because the previous gladiator was not defeated." : string.Empty;
+		internal string PreviousScoreTooltip => PreviousScore > 0 ? $"The current score of {Score} includes an accumulation of {PreviousScore} points from the previous undefeated gladiator." : string.Empty;
 		public int TotalScore => Score + PreviousScore;
 
 		/// <summary>
